@@ -12,7 +12,6 @@ import subprocess
 import platform
 import logging
 import time
-from decimal import *
 
 
 class Entropy(object):
@@ -26,8 +25,8 @@ class Entropy(object):
     def run(self):
         data = {}
         if platform.system() == 'Linux':
-            e = subprocess.check_output(
-                "cat /proc/sys/kernel/random/entropy_avail", shell=True)
+            e = subprocess.Popen(['cat', '/proc/sys/kernel/random/entropy_avail'],
+                                 stdout=subprocess.PIPE).communicate()[0]
             data = {'available': float(e)}
         else:
             self.checks_logger.error(
