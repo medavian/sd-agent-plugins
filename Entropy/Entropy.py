@@ -29,7 +29,7 @@ class Entropy(object):
                                  stdout=subprocess.PIPE).communicate()[0]
             data = {'available': float(e)}
         else:
-            self.checks_logger.error(
+            self.checksLogger.error(
                 'Plugin currently only available on Linux.')
         return data
 
